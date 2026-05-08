@@ -2,6 +2,7 @@ import java.util.*;
 
 public class WordScrambleGame {
 
+    //list of words that are possible to get
     private String[] words = {
             "Millikin", "Football", "Greenwall", "Programming",
             "Coding", "Scramble", "Soccer", "Cheerleading"
