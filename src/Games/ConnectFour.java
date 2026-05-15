@@ -2,7 +2,10 @@ package Games;
 
 import java.util.Scanner;
 
-public class ConnectFour implements GameTemplate {
+/**
+ * Connect 4 Game
+ */
+public class ConnectFour {
 
     private final int ROWS = 6;
     private final int COLS = 7;
@@ -10,6 +13,10 @@ public class ConnectFour implements GameTemplate {
 
     private final Scanner scanner;
 
+    /**
+     * Connect 4 Constructor
+     * @param scanner Text Scanner
+     */
     public ConnectFour(Scanner scanner) {
         this.scanner = scanner;
     }
@@ -104,18 +111,15 @@ public class ConnectFour implements GameTemplate {
     private boolean isBoardFull() {
         for (int c = 0; c < COLS; c++) {
             if (board[0][c] == '.') {
-                return false; // top row has space → not full
+                return false; // top row has space
             }
         }
         return true;
     }
 
-    @Override
-    public String getName() {
-        return "Connect Four";
-    }
-
-    @Override
+    /**
+     * Enter the Game Loop
+     */
     public void play() {
         initializeBoard();
 

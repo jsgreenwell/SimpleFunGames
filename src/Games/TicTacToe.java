@@ -2,7 +2,10 @@ package Games;
 
 import java.util.Scanner;
 
-public class TicTacToe implements GameTemplate {
+/**
+ * TicTacToe Game
+ */
+public class TicTacToe {
 
     private final int SIZE = 3;
     private char[][] board = new char[SIZE][SIZE];
@@ -80,16 +83,17 @@ public class TicTacToe implements GameTemplate {
 
     private final Scanner scanner;
 
+    /**
+     * TicTacToe Constructor
+     * @param scanner Text Scanner
+     */
     public TicTacToe(Scanner scanner) {
         this.scanner = scanner;
     }
 
-    @Override
-    public String getName() {
-        return "Tic Tac Toe";
-    }
-
-    @Override
+    /**
+     * Enter Game Loop
+     */
     public void play() {
         initializeBoard();
 

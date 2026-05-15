@@ -2,17 +2,19 @@ package Games;
 
 import java.util.Scanner;
 
-public class RockPaperScissors implements GameTemplate {
+/**
+ * RockPaperScissors Game
+ */
+public class RockPaperScissors {
 
     private final Scanner scanner;
 
+    /**
+     * RockPaperScissors Constructor
+     * @param scanner Text Scanner
+     */
     public RockPaperScissors(Scanner scanner) {
         this.scanner = scanner;
-    }
-
-    @Override
-    public String getName() {
-        return "Rock Paper Scissors";
     }
 
     private String getChoiceName(int choice) {
@@ -36,7 +38,9 @@ public class RockPaperScissors implements GameTemplate {
         return 2; // Player 2 wins
     }
 
-    @Override
+    /**
+     * Enter Game Loop
+     */
     public void play() {
         boolean playing = true;
 
@@ -72,7 +76,7 @@ public class RockPaperScissors implements GameTemplate {
                 System.out.println("Player " + winner + " wins!");
             }
 
-            System.out.print("\nPlay again? (y/n): ");
+            System.out.print("\nPlay again? Press y to Continue Game: ");
             String again = scanner.nextLine().trim().toLowerCase();
 
             if (!again.equals("y")) {
