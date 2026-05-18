@@ -1,15 +1,55 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import java.util.Scanner;
+import java.util.logging.FileHandler;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        WarGame war = new WarGame();
+        WordScrambleGame scramble = new WordScrambleGame();
+
+        while (true) {
+
+            System.out.println("\n=== Brian's GAME MENU ===");
+            System.out.println("1. War CardGame");
+            System.out.println("2. Word Scramble");
+            System.out.println("3. View High Scores");
+            System.out.println("4. Exit");
+
+            System.out.print("Choose: ");
+
+            try {
+                int choice = input.nextInt();
+                input.nextLine();
+
+                switch (choice) {
+
+                    case 1:
+                       new WarGame().play();
+                        break;
+
+                    case 2:
+                        scramble.play();
+                        break;
+
+                    case 3:
+                        ScoreFileHandler.readScores();
+                        break;
+
+                    case 4:
+                        System.out.println("Goodbye!");
+                        return;
+
+                    default:
+                        System.out.println("Invalid option.");
+                }
+
+            } catch (Exception e) {
+                System.out.println("Please enter a number.");
+                input.nextLine();
+            }
         }
     }
 }
