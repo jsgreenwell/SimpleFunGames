@@ -1,55 +1,93 @@
+import Games.ConnectFour;
+import Games.RockPaperScissors;
+import Games.TicTacToe;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
 
+
+// Menu for Game Selection
 public class Main {
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-        Scanner input = new Scanner(System.in);
+        boolean running = true;
 
-        WarGame war = new WarGame();
-        WordScrambleGame scramble = new WordScrambleGame();
+        while (running) {
+            System.out.println("=== Pick Any Game ===");
+            System.out.println("1. Connect Four");
+            System.out.println("2. Rock Paper Scissors");
+            System.out.println("3. Tic-Tac-Toe");
+            System.out.println("4. War CardGame"); // Second set of games here
+            System.out.println("5. Word Scramble");
+            System.out.println("6. View High Scores");
+            System.out.println("7. Quit");
+            System.out.print("Choose an option: ");
 
-        while (true) {
-
-            System.out.println("\n=== Brian's GAME MENU ===");
-            System.out.println("1. War CardGame");
-            System.out.println("2. Word Scramble");
-            System.out.println("3. View High Scores");
-            System.out.println("4. Exit");
-
-            System.out.print("Choose: ");
+            int choice = Integer.parseInt(scanner.nextLine().trim());
 
             try {
-                int choice = input.nextInt();
-                input.nextLine();
+              switch (choice) {
+                  case 1:
+                      ConnectFour connectFour = new ConnectFour(scanner);
+                      connectFour.play();
 
-                switch (choice) {
+                      System.out.print("Want to Play Again? (y/n): ");
+                      String again = scanner.nextLine().trim().toLowerCase();
 
-                    case 1:
+                      if (again.equals("y")) {
+                          connectFour = new ConnectFour(scanner); // reset game
+                          connectFour.play();
+                      }
+                      break;
+
+                  case 2:
+                      RockPaperScissors rps = new RockPaperScissors(scanner);
+                      rps.play();
+                      break;
+
+                  case 3:
+                      TicTacToe ticTacToe = new TicTacToe(scanner);
+                      ticTacToe.play();
+
+                      System.out.print("Play Tic Tac Toe again? Press y to Continue Game.");
+                      String again3 = scanner.nextLine().trim().toLowerCase();
+
+                      if (again3.equals("y")) {
+                          ticTacToe = new TicTacToe(scanner); // resets the game
+                          ticTacToe.play();
+                      }
+                      break;
+
+                    case 4:
                        new WarGame().play();
-                        break;
+                       break;
 
-                    case 2:
+                    case 5:
                         scramble.play();
                         break;
 
-                    case 3:
+                    case 6:
                         ScoreFileHandler.readScores();
                         break;
 
-                    case 4:
+                    case 7:
                         System.out.println("Goodbye!");
+                        running = false;
                         return;
 
                     default:
-                        System.out.println("Invalid option.");
-                }
-
-            } catch (Exception e) {
+                        System.out.println("Invalid choice.");
+              }
+           } catch (Exception e) {
                 System.out.println("Please enter a number.");
-                input.nextLine();
+                // Nice call here
             }
-        }
+
+            System.out.println();
+            System.out.println("Goodbye!");
+            scanner.close();
     }
 }
+
+
